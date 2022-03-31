@@ -5,7 +5,10 @@ from sqlalchemy.exc import NoResultFound
 from model.lista_negra import Lista_negra, lista_negra_parser
 from middleware.request import schema
 import socket
+
+
 lista_negra_api = Blueprint('lista_negra_api', __name__)
+
 
 # Adición de correos a la lista negra
 
