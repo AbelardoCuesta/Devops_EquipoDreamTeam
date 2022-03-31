@@ -3,9 +3,6 @@ from flask import Flask
 from model.init import instantiate_db
 from flask_injector import FlaskInjector
 from model.model import Base
-from dependencies import configure
-
-
 
 # Instancia de la aplicación en Flask
 app = Flask(__name__)
@@ -18,10 +15,7 @@ with app.app_context():
     from connections.db_connection import db
     db.Model = Base
 
-
-class HealthResource(Resource):
-    def get(self):
-        return {"status": "UP"}, 200
+from dependencies import configure
 
 # Agregamos el inyector de dependencias 
 FlaskInjector(app=app, modules=[configure])
