@@ -5,13 +5,13 @@ from datetime import timedelta
 from datetime import datetime
 from sqlalchemy import DateTime, ForeignKey
 from sqlalchemy.sql import func
-
+from utils.crypto import uuid4Str
 
 # Modelo para la entidad Producto
 class Lista_negra(Base):
     __tablename__ = "lista_negra"
 
-    id = Column(String(40), primary_key=True)
+    id = Column(String(40), primary_key=True, default=uuid4Str)
     email = Column(String(100), nullable=False)
     app_uuid = Column(String(100), nullable=False)
     blocked_reason = Column(String(256), nullable=False)

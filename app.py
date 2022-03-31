@@ -4,6 +4,9 @@ from model.init import instantiate_db
 from flask_injector import FlaskInjector
 from model.model import Base
 
+
+
+
 # Instancia de la aplicación en Flask
 app = Flask(__name__)
 
@@ -16,7 +19,9 @@ with app.app_context():
     db.Model = Base
 
 from dependencies import configure
+from api.lista_negra import lista_negra_api
 
+app.register_blueprint(lista_negra_api, url_prefix='/blacklists')
 # Agregamos el inyector de dependencias 
 FlaskInjector(app=app, modules=[configure])
 
