@@ -10,6 +10,9 @@ import socket
 lista_negra_api = Blueprint('lista_negra_api', __name__)
 
 
+
+
+
 # Adición de correos a la lista negra
 
 @lista_negra_api.route('', methods=['POST'])
