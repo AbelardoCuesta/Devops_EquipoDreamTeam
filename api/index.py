@@ -13,4 +13,4 @@ index_api = Blueprint('index_api', __name__)
 @index_api.route('/', methods=['GET'])
 @inject
 def get():
-    return "OK", 200
+    return "Soy otra la tercera versión", 200

@@ -5,7 +5,7 @@ from model.lista_negra import Lista_negra
 from middleware.request import schema
 import socket
 from flask_jwt_extended import  jwt_required
-
+from model.lista_negra import lista_negra_parser
 lista_negra_api = Blueprint('lista_negra_api', __name__)
 
 # Adición de correos a la lista negra
@@ -18,7 +18,10 @@ def post(db_connection: DBConnection):
     nuevo_correo=Lista_negra(email=request.json["email"], app_uuid=request.json["app_uuid"],blocked_reason=request.json["blocked_reason"],ip=ip_address)
     db_connection.db.session.add(nuevo_correo)
     db_connection.db.session.commit()
-    return "Agregado exitosamente el correo " + request.json["email"] + " a la lista negra global", 200
+    fecha=nuevo_correo.time_created
+    
+
+    return "Agregado exitosamente el correo " + request.json["email"] + " a la lista negra global. Desde la ip: "+ ip_address + " en la fecha " + str(fecha), 200
 
 
 @lista_negra_api.route('/<email_verificar>', methods=['GET'])
